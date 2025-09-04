@@ -30,7 +30,6 @@
         /* Global Styles */
         body {
             line-height: 1.6;
-            color: var(--dark);
             overflow-x: hidden;
         }
 
@@ -2204,4 +2203,5 @@
             .feature-card h3 {
                 font-size: 1.5rem;
             }
+
         }
