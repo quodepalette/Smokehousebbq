@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smokehouse BBQ - Authentic Slow-Smoked Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://res.cloudinary.com/dkds78kb3/image/upload/v1756908160/fire-solid-full_kaomel.svg">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">
+                    <i class="fas fa-fire"></i>
+                    Smokehouse BBQ
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact" class="cta-button">Order Now</a></li>
+                </ul>
+                <!-- Hamburger (becomes "X" when active) -->
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slideshow">
+            <div class="hero-slide active"
+                style="background-image: url('https://images.pexels.com/photos/8279973/pexels-photo-8279973.jpeg');">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.pexels.com/photos/106343/pexels-photo-106343.jpeg');">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.pexels.com/photos/14498742/pexels-photo-14498742.jpeg');">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.pexels.com/photos/27643019/pexels-photo-27643019.jpeg');">
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <!-- Fire sparks canvas layer -->
+        <div class="canvas-container">
+            <canvas id="fire-canvas"></canvas>
+        </div>
+
+        <div class="hero-content">
+            <h1>Authentic BBQ Perfection</h1>
+            <p>Experience the finest slow-smoked barbecue, made with passion and time-honored techniques since 1985</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary" id="exploreButton">Explore Menu</a>
+                <a href="#location" class="btn btn-secondary">Visit Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Heritage</h2>
+                <p>A story of passion, tradition, and the relentless pursuit of barbecue perfection</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>Cooking Up Excellence Since 1985</h3>
+                    <p>What started as a small family dream has grown into a barbecue destination that honors tradition
+                        while embracing innovation. Our founder, Big Jim Thompson, began smoking meats in his backyard,
+                        perfecting recipes that would eventually become the foundation of Smokehouse BBQ.</p>
+                    <p>Today, our award-winning pitmasters continue this legacy, starting each day before dawn to tend
+                        our custom-built smokers. We believe that great barbecue can't be rushed – it's an art form that
+                        requires patience, skill, and an unwavering commitment to quality.</p>
+                    <p>From our signature dry rubs made with 12 secret spices to our hand-selected hardwoods, every
+                        element is carefully chosen to create the perfect barbecue experience. This dedication has
+                        earned us recognition as one of the finest BBQ establishments in the region.</p>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <span class="stat-number">38+</span>
+                            <span class="stat-label">Years of Excellence</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">500K+</span>
+                            <span class="stat-label">Happy Customers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">25+</span>
+                            <span class="stat-label">Awards Won</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image animate-on-scroll">
+                    <img src="https://w0.peakpx.com/wallpaper/290/709/HD-wallpaper-food-meat-still-life.jpg"
+                        alt="Master Pitmaster at work">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Smokehouse BBQ</h2>
+                <p>Discover what makes our barbecue exceptional and why customers have been coming back for decades</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Wood-Fired Smoking</h3>
+                    <p>We use only premium hardwoods from local orchards to create the perfect smoke flavor that
+                        penetrates deep into every cut of meat.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Slow & Low Process</h3>
+                    <p>Our meats are smoked low and slow for up to 16 hours, ensuring tender, juicy results that fall
+                        off the bone every time.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>We source only the finest locally-raised, hormone-free meats and create our signature rubs and
+                        sauces from scratch daily.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Family Tradition</h3>
+                    <p>Three generations of pitmasters have perfected our recipes, passing down secrets that create our
+                        distinctive flavor profile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Signature Menu</h2>
+                <p>Every dish is made with care, smoked to perfection, and served with pride</p>
+            </div>
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="all">All Items</button>
+                <button class="category-btn" data-category="meats">Smoked Meats</button>
+                <button class="category-btn" data-category="sides">Sides</button>
+                <!--<button class="category-btn" data-category="desserts">Desserts</button>-->
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item animate-on-scroll" data-category="meats">
+                    <div class="menu-item-image">
+                        <img src="https://img.texasmonthly.com/2023/12/best-bbq-bites-2023-1.jpg?auto=compress&crop=faces&fit=fit&fm=webp&h=0&ixlib=php-3.3.1&q=45&w=1820"
+                            alt="Texas Brisket">
+                    </div>
+                    <div class="menu-item-content">
+                        <h4>Signature Texas Brisket</h4>
+                        <p>16-hour smoked prime brisket with our secret spice rub, served with pickles and onions</p>
+                        <div class="menu-item-footer">
+                            <span class="price">$28.99</span>
+                            <button class="order-btn">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item animate-on-scroll" data-category="meats">
+                    <div class="menu-item-image">
+                        <img src="https://biteswithbri.com/wp-content/uploads/2021/06/StLouisRibs-blog-8-1.jpg"
+                            alt="St. Louis Ribs">
+                    </div>
+                    <div class="menu-item-content">
+                        <h4>St. Louis Style Ribs</h4>
+                        <p>Full rack of perfectly smoked pork ribs glazed with our award-winning BBQ sauce</p>
+                        <div class="menu-item-footer">
+                            <span class="price">$26.99</span>
+                            <button class="order-btn">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item animate-on-scroll" data-category="meats">
+                    <div class="menu-item-image">
+                        <img src="https://redhotandblue.com/wp-content/uploads/2022/03/carolina-pulled-pork.jpg"
+                            alt="Pulled Pork">
+                    </div>
+                    <div class="menu-item-content">
+                        <h4>Carolina Pulled Pork</h4>
+                        <p>12-hour smoked pork shoulder, hand-pulled and served with tangy slaw and cornbread</p>
+                        <div class="menu-item-footer">
+                            <span class="price">$22.99</span>
+                            <button class="order-btn">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item animate-on-scroll" data-category="meats">
+                    <div class="menu-item-image">
+                        <img src="https://www.butterbeready.com/wp-content/uploads/2023/08/DK6A4215-680x1020.jpg"
+                            alt="Smoked Chicken">
+                    </div>
+                    <div class="menu-item-content">
+                        <h4>Honey Glazed Chicken</h4>
+                        <p>Half chicken smoked with applewood and finished with local honey glaze</p>
+                        <div class="menu-item-footer">
+                            <span class="price">$19.99</span>
+                            <button class="order-btn">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item animate-on-scroll" data-category="sides">
+                    <div class="menu-item-image">
+                        <img src="https://i0.wp.com/olivesandlamb.com/wp-content/uploads/2024/12/Smoked-Mac-and-Cheese-5-scaled.jpg?resize=819%2C1024&ssl=1"
+                            alt="Mac and Cheese">
+                    </div>
+                    <div class="menu-item-content">
+                        <h4>Smoked Mac & Cheese</h4>
+                        <p>Creamy three-cheese blend with crispy breadcrumb topping, finished in our smoker</p>
+                        <div class="menu-item-footer">
+                            <span class="price">$8.99</span>
+                            <button class="order-btn">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item animate-on-scroll" data-category="sides">
+                    <div class="menu-item-image">
+                        <img src="https://3f4c2184e060ce99111b-f8c0985c8cb63a71df5cb7fd729edcab.ssl.cf2.rackcdn.com/media/19106/hy-veesmokedpitbeans.jpg"
+                            alt="Baked Beans">
+                    </div>
+                    <div class="menu-item-content">
+                        <h4>Pit-Smoked Beans</h4>
+                        <p>House-made baked beans slow-cooked with burnt ends and molasses</p>
+                        <div class="menu-item-footer">
+                            <span class="price">$7.99</span>
+                            <button class="order-btn">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Gallery Carousel-->
+    <section class="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Free Drinks</h2>
+                <p>We've got you covered with free drinks!</p>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-counter">
+                        <span id="current-slide">1</span> / <span id="total-slides">5</span>
+                    </div>
+
+                    <div class="carousel-track" id="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1732575479846-4ffdb8689b3d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Free drinks" class="slide-image">
+
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Sip On Us</h3>
+                                <p class="slide-description">Enjoy refreshing complimentary drinks with every visit—our
+                                    treat to keep you cool and
+                                    happy.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1737692584512-3b284cfe7db8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Free drinks" class="slide-image">
+
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Cheers to Free Drinks</h3>
+                                <p class="slide-description">Raise your glass! Quench your thirst with free beverages
+                                    available all day long.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1693680500643-1fcb7bc4e873?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Free drinks" class="slide-image">
+
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Stay Hydrated, Stay Happy</h3>
+                                <p class="slide-description">From chilled water to fruity blends, our free drinks
+                                    station is always stocked for you.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1620219365359-1f2a7478a620?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Free drinks" class="slide-image">
+
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Compliments of the House</h3>
+                                <p class="slide-description">Take a break and refresh yourself with a variety of free
+                                    drinks on us.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="https://images.pexels.com/photos/4279103/pexels-photo-4279103.jpeg"
+                                alt="Free drinks" class="slide-image">
+
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Drink, Relax, Repeat</h3>
+                                <p class="slide-description">Cool down and unwind—our complimentary drinks are here
+                                    whenever you need them.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1596096653127-a6526ec8caf5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Free drinks" class="slide-image">
+
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Free Drinks Await</h3>
+                                <p class="slide-description">Step right in and grab your favorite beverage—completely
+                                    free, just for you.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="carousel-controls prev" id="prev-btn">❮</button>
+                    <button class="carousel-controls next" id="next-btn">❯</button>
+                </div>
+
+                <div class="carousel-indicators" id="indicators"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--white);">Our Smoking Process</h2>
+                <p style="color: rgba(255, 255, 255, 0.8);">From selection to serving, every step is carefully
+                    orchestrated for barbecue perfection</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h4>Premium Selection</h4>
+                    <p>We hand-select only the finest cuts from trusted local suppliers, ensuring marbling and quality.
+                    </p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h4>Signature Seasoning</h4>
+                    <p>Each cut is generously coated with our secret 12-spice dry rub and allowed to cure overnight.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h4>Low & Slow Smoking</h4>
+                    <p>Meats are smoked at 225°F using a blend of oak, hickory, and fruitwoods for 12-16 hours.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <h4>Perfect Service</h4>
+                    <p>Carved to order and served fresh from our smokers with house-made sauces and classic sides.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Guests Say</h2>
+                <p>Don't just take our word for it – hear from the barbecue lovers who keep coming back</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card animate-on-scroll">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Absolutely incredible! The brisket was the most tender I've ever had, and the
+                        smoke ring was perfect. This is authentic Texas BBQ at its finest. Can't wait to come back!</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Johnson"
+                            class="reviewer-image">
+                        <div class="reviewer-info">
+                            <h4><b style="color: var(--primary);">Michael Johnson</b></h4>
+                            <span><em>BBQ Enthusiast</em></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card animate-on-scroll">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">Smokehouse BBQ catered our wedding and it was phenomenal! Guests are still
+                        raving about the pulled pork and ribs months later. Professional service and amazing food.</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Williams"
+                            class="reviewer-image">
+                        <div class="reviewer-info">
+                            <h4><b style="color: var(--primary);">Sarah Williams</b></h4>
+                            <span><em>Happy Bride</em></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card animate-on-scroll">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">The atmosphere is warm and welcoming, and the food is out of this world. The
+                        burnt ends are like candy, and their house-made sauces complement every dish perfectly.</p>
+                    <div class="reviewer">
+                        <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="James Wilson"
+                            class="reviewer-image">
+                        <div class="reviewer-info">
+                            <h4><b style="color: var(--primary);">James Willson</b></h4>
+                            <span><em>Regular Customer</em></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Have questions about our BBQ or want to book catering? We'd love to hear from you!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-info-item animate-on-scroll">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info-details">
+                            <h4><b style="color: var(--primary);">Call Us</b></h4>
+                            <p><b style="color: var(--primary);">Phone:</b> (555) 123-4567<br><b
+                                    style="color: var(--primary);">Catering:</b> (555) 123-CATER<br>Available Mon-Sat
+                                9am-6pm</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item animate-on-scroll">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-details">
+                            <h4><b style="color: var(--primary);">Email Us</b></h4>
+                            <p><b style="color: var(--primary);">General:</b> info@smokehousebbq.com<br><b
+                                    style="color: var(--primary);">Catering:</b>
+                                catering@smokehousebbq.com<br>We respond
+                                within 24 hours</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item animate-on-scroll">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-info-details">
+                            <h4><b style="color: var(--primary);">Business Hours</b></h4>
+                            <p><b style="color: var(--primary);">Mon-Thu:</b> 11am-9pm<br><b
+                                    style="color: var(--primary);">Fri-Sat:</b> 11am-10pm<br><b
+                                    style="color: var(--primary);">Sunday: </b>S12pm-8pm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form animate-on-scroll">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="catering">Catering Request</option>
+                                <option value="reservation">Table Reservation</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help you..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visit Our Smokehouse</h2>
+                <p>Come experience the authentic atmosphere where the magic happens</p>
+            </div>
+            <div class="location-content">
+                <div class="location-info">
+                    <div class="location-item animate-on-scroll">
+                        <div class="location-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="location-details">
+                            <h4><b style="color: var(--primary);">Our Address</b></h4>
+                            <p>123 BBQ Avenue<br>Smoketown, TX 75001<br>Easy parking available</p>
+                        </div>
+                    </div>
+                    <div class="location-item animate-on-scroll">
+                        <div class="location-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="location-details">
+                            <h4><b style="color: var(--primary);">Hours of Operation</b></h4>
+                            <p><b style="color: var(--primary);">Mon-Thu:</b> 11am-9pm<br><b
+                                    style="color: var(--primary);">Fri-Sat:</b> 11am-10pm<br><b
+                                    style="color: var(--primary);">Sunday:</b> 12pm-8pm</p>
+                        </div>
+                    </div>
+                    <div class="location-item animate-on-scroll">
+                        <div class="location-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="location-details">
+                            <h4><b style="color: var(--primary);">Contact Information</b></h4>
+                            <p><b style="color: var(--primary);">Phone:</b> (555) 123-4567<br><b
+                                    style="color: var(--primary);">Email:</b> info@smokehousebbq.com<br><b
+                                    style="color: var(--primary);">Catering:</b> (555) 123-CATER</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container animate-on-scroll">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.997254617496!2d-96.7976239244039!3d32.79449857364206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e9921316c85c5%3A0x6accd93bdef21d66!2sDowntown%2C%20Dallas%2C%20TX!5e0!3m2!1sen!2sus!4v1685489998793!5m2!1sen!2sus"
+                        allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--white);">Join the BBQ Family</h2>
+                <p style="color: rgba(255, 255, 255, 0.8);">Get exclusive deals, event notifications, and BBQ tips
+                    delivered to your inbox</p>
+            </div>
+
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"></button>
+
+    <!-- Live Chat Button -->
+    <button class="live-chat-button" id="liveChatButton" aria-label="Live chat"></button>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-header">
+            <h3>Live Chat</h3>
+            <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    👋 Welcome to Smokehouse BBQ! How can we help you today?
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." maxlength="200">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Smokehouse BBQ</h3>
+                    <p>Authentic slow-smoked barbecue made with passion and served with pride since 1985.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#menu">Our Menu</a>
+                    <a href="#about">About Us</a>
+                    <a href="#process">Our Process</a>
+                    <a href="#reviews">Reviews</a>
+                    <a href="#location">Location</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Dine-In</a>
+                    <a href="#">Takeout</a>
+                    <a href="#">Catering</a>
+                    <a href="#">Private Events</a>
+                    <a href="#">Gift Cards</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>123 BBQ Avenue<br>Smoketown, TX 75001</p>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>Email: info@smokehousebbq.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smokehouse BBQ. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="js/script.js"></script>
+</body>
+
+</html>
