@@ -313,6 +313,24 @@ img,
   background: var(--bg-page) !important;
 }
 
+.form-group select {
+  color: #1a1a1a;
+  color-scheme: dark;
+}
+
+.form-group select option:checked {
+  background-color: var(--ember) !important;
+  color: #fff;
+}
+
+.form-group select {
+  accent-color: var(--ember);
+}
+
+.form-group select option {
+  color: #1a1a1a;
+}
+
 [data-theme='light'] .form-group input,
 [data-theme='light'] .form-group textarea,
 [data-theme='light'] .form-group select {
