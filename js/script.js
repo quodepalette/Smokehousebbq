@@ -1,536 +1,296 @@
-// Header scroll effect
-window.addEventListener('scroll', () => {
+(() => {
+  'use strict';
+
+  /*  Header Scroll  */
   const header = document.getElementById('header');
-  if (window.scrollY > 100) {
-    header.classList.add('header-scrolled');
-  } else {
-    header.classList.remove('header-scrolled');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+    document
+      .getElementById('backToTop')
+      .classList.toggle('visible', window.scrollY > 400);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /*  Mobile Nav  */
+  const toggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileLinks = mobileNav.querySelectorAll('a');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open')
+      ? 'hidden'
+      : '';
+  });
+  mobileLinks.forEach((a) =>
+    a.addEventListener('click', () => {
+      toggle.classList.remove('active');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }),
+  );
+
+  /*  Hero Slideshow  */
+  const slides = document.querySelectorAll('.hero-slide');
+  const dotsWrap = document.getElementById('heroDots');
+  let current = 0;
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goSlide(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = dotsWrap.querySelectorAll('.hero-dot');
+  function goSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
   }
-});
+  setInterval(() => goSlide((current + 1) % slides.length), 5000);
 
-// Hero slideshow
-let slideIndex = 0;
-const slides = document.querySelectorAll('.hero-slide');
-
-function showSlides() {
-  slides.forEach((slide, index) => {
-    slide.classList.remove('active');
-    if (index === slideIndex) {
-      slide.classList.add('active');
-    }
-  });
-
-  slideIndex = (slideIndex + 1) % slides.length;
-}
-
-setInterval(showSlides, 3000);
-
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  menuToggle.classList.toggle('active'); // animate hamburger → X
-});
-
-// Close mobile menu when clicking links
-document.querySelectorAll('.nav-links a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-    menuToggle.classList.remove('active'); // reset hamburger
-  });
-});
-
-// Menu category filtering
-const categoryBtns = document.querySelectorAll('.category-btn');
-const menuItems = document.querySelectorAll('.menu-item');
-
-categoryBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const category = btn.dataset.category;
-
-    // Update active button
-    categoryBtns.forEach((b) => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    // Filter menu items
-    menuItems.forEach((item) => {
-      if (category === 'all' || item.dataset.category === category) {
-        item.style.display = 'flex';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-});
-
-// Smooth scrolling for navigation
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  });
-});
-
-// Scroll animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px',
-};
-
-const observer = new IntersectionObserver(function (entries) {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animated');
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-  observer.observe(el);
-});
-
-// Newsletter form submission
-document
-  .querySelector('.newsletter-form')
-  .addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = this.querySelector('.newsletter-input').value;
-    if (email) {
-      alert('Thank you for subscribing to our newsletter!');
-      this.querySelector('.newsletter-input').value = '';
-    }
-  });
-
-// Order button functionality
-document.querySelectorAll('.order-btn').forEach((btn) => {
-  btn.addEventListener('click', function () {
-    const itemName = this.closest('.menu-item').querySelector('h4').textContent;
-    alert(
-      `${itemName} added to your order! Call (555) 123-4567 to complete your order.`
-    );
-  });
-});
-
-// Back to Top & Live Chat Button Functionality
-const backToTopButton = document.getElementById('backToTop');
-const liveChatButton = document.getElementById('liveChatButton');
-
-// Show/hide back to top button & chat button based on scroll position
-function toggleButtons() {
-  if (window.scrollY > 300) {
-    backToTopButton.classList.add('visible');
-    liveChatButton.classList.add('visible');
-  } else {
-    backToTopButton.classList.remove('visible');
-    liveChatButton.classList.remove('visible');
-  }
-}
-
-// Smooth scroll to top
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
-
-// Event listeners for scroll & back to top
-window.addEventListener('scroll', toggleButtons);
-backToTopButton.addEventListener('click', scrollToTop);
-
-// Live Chat Functionality
-const chatModal = document.getElementById('chatModal');
-const chatClose = document.getElementById('chatClose');
-const chatInput = document.getElementById('chatInput');
-const chatMessages = document.getElementById('chatMessages');
-
-let chatOpen = false;
-
-// Toggle chat modal
-function toggleChat() {
-  chatOpen = !chatOpen;
-  if (chatOpen) {
-    chatModal.classList.add('active');
-    chatInput.focus();
-  } else {
-    chatModal.classList.remove('active');
-  }
-}
-
-// Close chat
-function closeChat() {
-  chatOpen = false;
-  chatModal.classList.remove('active');
-}
-
-// Add message to chat
-function addMessage(message, isUser = false) {
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('message');
-  messageDiv.classList.add(isUser ? 'user' : 'bot');
-  messageDiv.textContent = message;
-  chatMessages.appendChild(messageDiv);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Simulate bot responses
-function simulateBotResponse(userMessage) {
-  const responses = [
-    'Thanks for your message! Our team will get back to you shortly.',
-    "Thanks for your message! Our team will get back to you shortly. Side note: We're open Monday-Sunday, 11 AM - 10 PM",
-    'Thanks for your message! Our team will get back to you shortly. Side note: For reservations, please call us at (000) 123-4040.',
-    'Thanks for your message! Our team will get back to you shortly. Side note: Our BBQ is slow-cooked for 12+ hours for the perfect flavor!',
-    'Thanks for your message! Our team will get back to you shortly. Side note: We offer both dine-in and takeout options.',
-    'Thanks for your message! Our team will get back to you shortly. Side note: Check out our catering menu for your next event!',
-  ];
-
-  const randomResponse =
-    responses[Math.floor(Math.random() * responses.length)];
-
-  setTimeout(() => {
-    addMessage(randomResponse, false);
-  }, 1000 + Math.random() * 2000); // Random delay between 1-3 seconds
-}
-
-// Handle chat input
-function handleChatInput(e) {
-  if (e.key === 'Enter' && e.target.value.trim()) {
-    const message = e.target.value.trim();
-    addMessage(message, true);
-    simulateBotResponse(message);
-    e.target.value = '';
-  }
-}
-
-// Event listeners for live chat
-liveChatButton.addEventListener('click', toggleChat);
-chatClose.addEventListener('click', closeChat);
-chatInput.addEventListener('keypress', handleChatInput);
-
-// Close chat when clicking outside
-document.addEventListener('click', function (e) {
-  if (
-    chatOpen &&
-    !chatModal.contains(e.target) &&
-    !liveChatButton.contains(e.target)
-  ) {
-    closeChat();
-  }
-});
-
-// Prevent chat modal from closing when clicking inside
-chatModal.addEventListener('click', function (e) {
-  e.stopPropagation();
-});
-
-// Hero fire canvas
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('fire-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  class FireAnimation {
-    constructor() {
-      this.particles = [];
-      this.paletteBase = [
-        { r: 245, g: 167, b: 66 }, // Gold
-        { r: 232, g: 90, b: 25 }, // Orange
-        { r: 255, g: 62, b: 0 }, // Bright red-orange
-        { r: 191, g: 34, b: 34 }, // Deep red
-      ];
-      this.palette = [...this.paletteBase];
-      this.time = 0;
-      this.lastUpdateTime = 0;
-      this.createParticles();
-      this.animate();
-    }
-
-    createParticles() {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 3000);
-      for (let i = 0; i < particleCount; i++) {
-        this.particles.push(this.newParticle());
-      }
-    }
-
-    newParticle(
-      x = Math.random() * canvas.width,
-      y = canvas.height + Math.random() * 100
-    ) {
-      return {
-        x,
-        y,
-        size: 5 + Math.random() * 25,
-        opacity: 0.1 + Math.random() * 0.5,
-        speedX: (Math.random() - 0.5) * 1.5,
-        speedY: -1.5 - Math.random() * 3,
-        colorIndex: Math.floor(Math.random() * this.palette.length),
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
-        sway: 0.3 + Math.random() * 0.5,
-        swaySpeed: 0.005 + Math.random() * 0.01,
-        swayOffset: Math.random() * Math.PI * 2,
-        lifespan: 100 + Math.random() * 200,
-      };
-    }
-
-    animate(currentTime = 0) {
-      this.lastUpdateTime = currentTime;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.time += 0.01;
-      this.updatePalette();
-      this.updateParticles();
-      if (this.particles.length < 100) this.createParticles();
-      requestAnimationFrame(this.animate.bind(this));
-    }
-
-    updatePalette() {
-      this.palette = this.paletteBase.map((c, i) => {
-        const t = this.time + i * 0.5;
-        const v = 20;
-        return {
-          r: Math.min(255, Math.max(0, c.r + Math.sin(t) * v)),
-          g: Math.min(255, Math.max(0, c.g + Math.sin(t + 1) * v)),
-          b: Math.min(255, Math.max(0, c.b + Math.sin(t + 2) * v)),
-        };
-      });
-    }
-
-    updateParticles() {
-      this.particles.forEach((p, i) => {
-        p.x +=
-          p.speedX + Math.sin(this.time * p.swaySpeed + p.swayOffset) * p.sway;
-        p.y += p.speedY;
-        p.rotation += p.rotationSpeed;
-        p.lifespan -= 1;
-        const lifeFactor = p.lifespan / 300;
-        const size = p.size * lifeFactor;
-        const opacity = p.opacity * lifeFactor;
-        if (p.lifespan > 0 && p.y > -100) {
-          this.drawBrushstroke(
-            p.x,
-            p.y,
-            size,
-            p.rotation,
-            this.palette[p.colorIndex],
-            opacity
-          );
-        } else {
-          this.particles[i] = this.newParticle();
+  /*  Scroll Reveal  */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          revealObs.unobserve(e.target);
         }
       });
-    }
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+  );
+  reveals.forEach((el) => revealObs.observe(el));
 
-    drawBrushstroke(x, y, size, rotation, color, opacity) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rotation);
-      const gradient = ctx.createLinearGradient(0, -size, 0, size);
-      gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
-      gradient.addColorStop(
-        0.5,
-        `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`
-      );
-      gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.moveTo(-size / 4, -size);
-      ctx.quadraticCurveTo(size / 2, 0, -size / 3, size);
-      ctx.quadraticCurveTo(size / 2, 0, size / 3, -size / 2);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
-  }
+  /*  Counter Animation  */
+  const counters = document.querySelectorAll('[data-target]');
+  const counterObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        let start = 0;
+        const dur = 1800;
+        const startTime = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - startTime) / dur, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(ease * target);
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        counterObs.unobserve(el);
+      });
+    },
+    { threshold: 0.5 },
+  );
+  counters.forEach((c) => counterObs.observe(c));
 
-  const fireAnimation = new FireAnimation();
-
-  // Burst effect on Explore Menu click
-  const exploreButton = document.getElementById('exploreButton');
-  exploreButton.addEventListener('click', () => {
-    for (let i = 0; i < 50; i++) {
-      const rect = exploreButton.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 10 + Math.random() * 50;
-      fireAnimation.particles.push(
-        fireAnimation.newParticle(
-          centerX + Math.cos(angle) * distance,
-          centerY + Math.sin(angle) * distance
-        )
-      );
-    }
+  /*  Menu Filter  */
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const menuItems = document.querySelectorAll('.menu-item');
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      menuItems.forEach((item, i) => {
+        const show = cat === 'all' || item.dataset.category === cat;
+        item.style.display = show ? '' : 'none';
+        if (show) {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            item.style.transition = 'opacity 0.4s, transform 0.4s';
+            item.style.opacity = '';
+            item.style.transform = '';
+          }, i * 60);
+        }
+      });
+    });
   });
-});
 
-// Gallery Carousel
-class ModernCarousel {
-  constructor() {
-    this.track = document.getElementById('carousel-track');
-    this.slides = document.querySelectorAll('.carousel-slide');
-    this.prevBtn = document.getElementById('prev-btn');
-    this.nextBtn = document.getElementById('next-btn');
-    this.indicatorsContainer = document.getElementById('indicators');
-    this.currentSlideSpan = document.getElementById('current-slide');
-    this.totalSlidesSpan = document.getElementById('total-slides');
-
-    this.currentSlide = 0;
-    this.totalSlides = this.slides.length;
-    this.autoPlayInterval = null;
-    this.isTransitioning = false;
-
-    this.init();
+  /*  Carousel  */
+  const track = document.getElementById('cTrack');
+  const cSlides = track.querySelectorAll('.carousel-slide');
+  const cDotsWrap = document.getElementById('cDots');
+  document.getElementById('cSlideTotal').textContent = cSlides.length;
+  let cIdx = 0;
+  cSlides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'c-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goC(i));
+    cDotsWrap.appendChild(d);
+  });
+  const cDotEls = cDotsWrap.querySelectorAll('.c-dot');
+  function goC(n) {
+    cIdx = (n + cSlides.length) % cSlides.length;
+    track.style.transform = `translateX(-${cIdx * 100}%)`;
+    cDotEls.forEach((d, i) => d.classList.toggle('active', i === cIdx));
+    document.getElementById('cSlideNum').textContent = cIdx + 1;
   }
+  document
+    .getElementById('cPrev')
+    .addEventListener('click', () => goC(cIdx - 1));
+  document
+    .getElementById('cNext')
+    .addEventListener('click', () => goC(cIdx + 1));
+  // Touch Swipe
+  let touchStartX = 0;
+  track.addEventListener(
+    'touchstart',
+    (e) => (touchStartX = e.touches[0].clientX),
+    { passive: true },
+  );
+  track.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goC(diff > 0 ? cIdx + 1 : cIdx - 1);
+  });
+  setInterval(() => goC(cIdx + 1), 6000);
 
-  init() {
-    this.createIndicators();
-    this.updateCounter();
-    this.updateIndicators();
-    this.attachEventListeners();
-    this.startAutoPlay();
-  }
-
-  createIndicators() {
-    for (let i = 0; i < this.totalSlides; i++) {
-      const indicator = document.createElement('button');
-      indicator.classList.add('indicator');
-      indicator.addEventListener('click', () => this.goToSlide(i));
-      this.indicatorsContainer.appendChild(indicator);
-    }
-  }
-
-  attachEventListeners() {
-    this.prevBtn.addEventListener('click', () => this.prevSlide());
-    this.nextBtn.addEventListener('click', () => this.nextSlide());
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') this.prevSlide();
-      if (e.key === 'ArrowRight') this.nextSlide();
-    });
-
-    // Touch/swipe support
-    let startX = 0;
-    let endX = 0;
-
-    this.track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-
-    this.track.addEventListener('touchend', (e) => {
-      endX = e.changedTouches[0].clientX;
-      this.handleSwipe(startX, endX);
-    });
-
-    // Mouse drag support
-    let isDragging = false;
-    let mouseStartX = 0;
-
-    this.track.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      mouseStartX = e.clientX;
-      this.track.style.cursor = 'grabbing';
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-    });
-
-    document.addEventListener('mouseup', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      this.track.style.cursor = 'grab';
-      this.handleSwipe(mouseStartX, e.clientX);
-    });
-
-    // Pause autoplay on hover
-    this.track.addEventListener('mouseenter', () => this.pauseAutoPlay());
-    this.track.addEventListener('mouseleave', () => this.startAutoPlay());
-  }
-
-  handleSwipe(startX, endX) {
-    const threshold = 50;
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        this.nextSlide();
-      } else {
-        this.prevSlide();
-      }
-    }
-  }
-
-  goToSlide(slideIndex) {
-    if (this.isTransitioning || slideIndex === this.currentSlide) return;
-
-    this.isTransitioning = true;
-    this.currentSlide = slideIndex;
-
-    const translateX = -this.currentSlide * 100;
-    this.track.style.transform = `translateX(${translateX}%)`;
-
-    this.updateIndicators();
-    this.updateCounter();
-
+  /*  Contact Form  */
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
     setTimeout(() => {
-      this.isTransitioning = false;
-    }, 600);
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }, 1200);
+  });
+
+  /*  Newsletter  */
+  document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = 'var(--ember-dk)';
+    e.target.querySelector('input').disabled = true;
+    btn.disabled = true;
+  });
+
+  /*  Live Chat  */
+  const chatBtn = document.getElementById('liveChatBtn');
+  const chatModal = document.getElementById('chatModal');
+  const chatClose = document.getElementById('chatClose');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatTyping = document.getElementById('chatTyping');
+
+  const botReplies = [
+    'Great question! Our pitmasters start smoking at 4am every day to have everything ready for opening. 🔥',
+    'Our brisket is our most popular item — 16 hours of love in every slice!',
+    'We do offer catering for events of all sizes. Give us a call at (555) 123-CATER for details.',
+    'Our free drinks include lemonade, sweet tea, and assorted sodas — all on us!',
+    'Reservations can be made by phone or through our contact form above.',
+    'Thanks for reaching out! A team member will follow up within 24 hours. 😊',
+  ];
+  let botIdx = 0;
+
+  chatBtn.addEventListener('click', () => chatModal.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatModal.classList.remove('open'));
+
+  function addMsg(text, type) {
+    const d = document.createElement('div');
+    d.className = `msg ${type}`;
+    d.textContent = text;
+    chatMessages.appendChild(d);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  nextSlide() {
-    const nextIndex = (this.currentSlide + 1) % this.totalSlides;
-    this.goToSlide(nextIndex);
+  function sendMsg() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMsg(text, 'user');
+    chatInput.value = '';
+    chatTyping.classList.add('show');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    setTimeout(
+      () => {
+        chatTyping.classList.remove('show');
+        addMsg(botReplies[botIdx % botReplies.length], 'bot');
+        botIdx++;
+      },
+      1200 + Math.random() * 600,
+    );
   }
 
-  prevSlide() {
-    const prevIndex =
-      (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-    this.goToSlide(prevIndex);
-  }
+  chatSend.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMsg();
+  });
 
-  updateIndicators() {
-    const indicators = document.querySelectorAll('.indicator');
-    indicators.forEach((indicator, index) => {
-      indicator.classList.toggle('active', index === this.currentSlide);
+  /*  Order Buttons  */
+  document.querySelectorAll('.order-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ Added!';
+      btn.style.background = 'var(--ember)';
+      btn.style.color = 'white';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1800);
     });
-  }
+  });
 
-  updateCounter() {
-    this.currentSlideSpan.textContent = this.currentSlide + 1;
-    this.totalSlidesSpan.textContent = this.totalSlides;
-  }
+  /*  Theme Toggle  */
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeToggleMobile = document.getElementById('themeToggleMobile');
+  const mobileThemeLabel = document.getElementById('mobileThemeLabel');
 
-  startAutoPlay() {
-    this.pauseAutoPlay();
-    this.autoPlayInterval = setInterval(() => {
-      this.nextSlide();
-    }, 5000);
-  }
+  // Detect Preferred Theme: Localstorage → System Preference → Dark Default
+  const savedTheme = localStorage.getItem('bbq-theme');
+  const systemPrefersDark = window.matchMedia(
+    '(prefers-color-scheme: dark)',
+  ).matches;
+  const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+  applyTheme(initialTheme, false);
 
-  pauseAutoPlay() {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
+  function applyTheme(theme, animate) {
+    if (animate === false) {
+      html.style.setProperty('--transition-override', 'none');
+    }
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('bbq-theme', theme);
+    updateLabel(theme);
+    if (animate === false) {
+      requestAnimationFrame(() =>
+        html.style.removeProperty('--transition-override'),
+      );
     }
   }
-}
 
-// Initialize the carousel when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  new ModernCarousel();
-});
+  function updateLabel(theme) {
+    if (mobileThemeLabel) {
+      mobileThemeLabel.textContent =
+        theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+    }
+  }
+
+  function toggleTheme() {
+    const current = html.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark', true);
+  }
+
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+  if (themeToggleMobile)
+    themeToggleMobile.addEventListener('click', toggleTheme);
+
+  // Sync When System Preference Changes And No Manual Override Exists
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', (e) => {
+      if (!localStorage.getItem('bbq-theme')) {
+        applyTheme(e.matches ? 'dark' : 'light', true);
+      }
+    });
+})();
