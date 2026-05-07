@@ -241,56 +241,51 @@
     });
   });
 
-  /*  Theme Toggle  */
-  const html = document.documentElement;
-  const themeToggle = document.getElementById('themeToggle');
-  const themeToggleMobile = document.getElementById('themeToggleMobile');
-  const mobileThemeLabel = document.getElementById('mobileThemeLabel');
+  /*  Hash Link Toast  */
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.id = 'protoToast';
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(16px);
+    background: var(--bark, #3d342c);
+    color: var(--cream, #f5efe6);
+    font-family: var(--font-body, sans-serif);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 12px 22px;
+    border-radius: 4px;
+    border-left: 3px solid var(--ember, #e8521a);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+  `;
+  toast.textContent = '🔧 Prototype — This link is not available yet';
+  document.body.appendChild(toast);
 
-  // Detect Preferred Theme: Localstorage → System Preference → Dark Default
-  const savedTheme = localStorage.getItem('bbq-theme');
-  const systemPrefersDark = window.matchMedia(
-    '(prefers-color-scheme: dark)',
-  ).matches;
-  const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-  applyTheme(initialTheme, false);
-
-  function applyTheme(theme, animate) {
-    if (animate === false) {
-      html.style.setProperty('--transition-override', 'none');
-    }
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem('bbq-theme', theme);
-    updateLabel(theme);
-    if (animate === false) {
-      requestAnimationFrame(() =>
-        html.style.removeProperty('--transition-override'),
-      );
-    }
+  let toastTimer;
+  function showToast() {
+    clearTimeout(toastTimer);
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toastTimer = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(16px)';
+    }, 2800);
   }
 
-  function updateLabel(theme) {
-    if (mobileThemeLabel) {
-      mobileThemeLabel.textContent =
-        theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+  // Intercept all anchor tags whose href is exactly "#" (bare hash links)
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href="#"]');
+    if (anchor) {
+      e.preventDefault();
+      showToast();
     }
-  }
-
-  function toggleTheme() {
-    const current = html.getAttribute('data-theme') || 'dark';
-    applyTheme(current === 'dark' ? 'light' : 'dark', true);
-  }
-
-  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-  if (themeToggleMobile)
-    themeToggleMobile.addEventListener('click', toggleTheme);
-
-  // Sync When System Preference Changes And No Manual Override Exists
-  window
-    .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', (e) => {
-      if (!localStorage.getItem('bbq-theme')) {
-        applyTheme(e.matches ? 'dark' : 'light', true);
-      }
-    });
+  });
 })();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -15,14 +15,7 @@
     <link rel="icon" type="image/x-icon"
         href="https://res.cloudinary.com/dkds78kb3/image/upload/v1756908160/fire-solid-full_kaomel.svg">
 
-    <!-- Anti-FOUC: apply saved theme before first paint -->
-    <script>
-        (function () {
-            var t = localStorage.getItem('bbq-theme');
-            if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', t);
-        })();
-    </script>
+
 
 </head>
 
@@ -37,16 +30,6 @@
         <a href="#reviews" class="mobile-link">Reviews</a>
         <a href="#location" class="mobile-link">Location</a>
         <a href="#contact" class="mobile-link mobile-cta">Order Now</a>
-        <div class="mobile-theme-toggle">
-            <span class="mobile-theme-label" id="mobileThemeLabel">Dark Mode</span>
-            <!-- <button class="theme-toggle-btn" id="themeToggleMobile" aria-label="Toggle theme"
-                style="width:64px;height:34px"> -->
-            <!-- <span class="toggle-thumb" style="width:26px;height:26px">
-                    <span class="toggle-icon-moon"><i class="fas fa-moon"></i></span>
-                    <span class="toggle-icon-sun"><i class="fas fa-sun"></i></span>
-                </span> -->
-            </button>
-        </div>
     </nav>
 
     <!--  Header  -->
@@ -66,12 +49,6 @@
                 <li><a href="#contact" class="cta-pill">Order Now</a></li>
             </ul>
             <div style="display:flex;align-items:center;gap:14px">
-                <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme">
-                    <span class="toggle-thumb">
-                        <span class="toggle-icon-moon"><i class="fas fa-moon"></i></span>
-                        <span class="toggle-icon-sun"><i class="fas fa-sun"></i></span>
-                    </span>
-                </button>
                 <div class="menu-toggle" id="menuToggle">
                     <span></span><span></span><span></span>
                 </div>
@@ -598,7 +575,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#home" class="logo" style="display:inline-flex;margin-bottom:4px">
+                    <a href="#home" class="footer-logo" style="display:inline-flex;margin-bottom:4px">
                         <i class="fas fa-fire fire-icon"></i>
                         Smokehouse BBQ
                     </a>
